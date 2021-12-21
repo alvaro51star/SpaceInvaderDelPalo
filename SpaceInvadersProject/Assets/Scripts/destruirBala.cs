@@ -10,7 +10,7 @@ public class destruirBala : MonoBehaviour
     public static int puntos = 0;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "asteroid")
+        if(collision.gameObject.tag == "asteroide")
         {
             Destroy(gameObject);
             puntos = SumarPuntos();

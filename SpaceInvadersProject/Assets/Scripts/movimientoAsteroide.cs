@@ -16,18 +16,18 @@ public class movimientoAsteroide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(-velocidadAsteroide, 0, 0);
+        rb.velocity = new Vector3(0, -velocidadAsteroide, 0);
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "bala")
+        if (collision.gameObject.tag == "bala")
         {
             Destroy(gameObject);
         }
