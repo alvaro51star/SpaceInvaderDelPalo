@@ -13,16 +13,28 @@ public class destruirBala : MonoBehaviour
         if(collision.gameObject.tag == "asteroide")
         {
             Destroy(gameObject);
-            puntos = SumarPuntos();
-            Puntuacion.puntuacion++;          
+            
+        }
+        else if(collision.gameObject.tag == "EnemigoBasico")
+        {
+            Destroy(gameObject);
+            
+        }
+        else if (collision.gameObject.tag == "kamikaze")
+        {
+            Destroy(gameObject);
+            
+        }
+        else if(collision.gameObject.tag == "balaEnemigo")
+        {
+            Destroy(gameObject);
         }
     }
 
-    private int SumarPuntos()
+    private void Start()
     {
-        puntos++;
-        return puntos;
+      
     }
 
-    
+
 }

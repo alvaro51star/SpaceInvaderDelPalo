@@ -5,17 +5,36 @@ using UnityEngine.UI;
 
 public class Puntuacion : MonoBehaviour
 {
-    Text score;
-    public static int puntuacion = 0;
-    // Start is called before the first frame update
+    static Text score;
+    public static float puntuacion = 0;
+    private static int multiplicador = 1;
+    private float tiempo;
+    private float tiempoMultiplicador=60; //En segundos
+    private float puntuacionASumar;
     
     private void Start()
     {
+        puntuacionASumar = 0;
+        tiempo = 0;
         score = GetComponent<Text>();
     }
 
     private void Update()
     {
-        score.text = puntuacion.ToString();
+        tiempo += Time.deltaTime;
+        if (tiempo >= tiempoMultiplicador)
+        {
+            multiplicador++;
+            tiempo = 0;
+        }
+    }
+
+
+    public static void SumarPuntos(int puntosRecibidos)
+    {
+        puntosRecibidos *= multiplicador;
+        puntuacion += puntosRecibidos;
+
+        score.text = (puntuacion).ToString() + "x" + multiplicador;
     }
 }

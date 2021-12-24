@@ -20,7 +20,7 @@ public class spawnAsteroid : MonoBehaviour
         timeTillNextAsteroid -= Time.deltaTime;
         if (timeTillNextAsteroid <= 0)
         {
-            Instantiate(asteroid, new Vector3(Random.Range(8f, -8f), positionRespawn.position.y, 0), Quaternion.identity);
+            Instantiate(asteroid, new Vector3(Random.Range(7f, -7f), positionRespawn.position.y, 0), Quaternion.identity);
             timeTillNextAsteroid = timeAsteroid;
         }
     }

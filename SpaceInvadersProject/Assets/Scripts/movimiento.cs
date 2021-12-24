@@ -8,12 +8,14 @@ public class movimiento : MonoBehaviour
     public float velocidad = 1f;
     public float tiempoDeRecarga = 0.5f;
     public Transform balaLoc;
+    public Transform balaLoc2;
     public float bulletSpeed;
     public GameObject bullet;
+    private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -25,13 +27,16 @@ public class movimiento : MonoBehaviour
         //Se mueve
         
 
-        if(gameObject.transform.position.y < -4)
+        if(gameObject.transform.position.x < -7)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, -4, gameObject.transform.position.z);
+            gameObject.transform.position = new Vector3(-7, gameObject.transform.position.y, gameObject.transform.position.z);
+            rb.velocity = new Vector2(0,0);
+            
         }
-        else if(gameObject.transform.position.y > 4)
+        else if(gameObject.transform.position.x > 7)
         {
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, 4, gameObject.transform.position.z);
+            gameObject.transform.position = new Vector3(7, gameObject.transform.position.y, gameObject.transform.position.z);
+            rb.velocity = new Vector2(0, 0);
         }
         else
         {
@@ -41,7 +46,7 @@ public class movimiento : MonoBehaviour
         //Que no pueda disparar todo el tiempo
         if (Input.GetKeyDown("space") && tiempoDeRecarga <= 0)
         {
-            Shot();
+            NormalShot();
             tiempoDeRecarga = 0.5f;
         }
         
@@ -49,11 +54,16 @@ public class movimiento : MonoBehaviour
 
     
 
-    void Shot()
+    void NormalShot()
     {
-        GameObject bulletSpawn = Instantiate(bullet, balaLoc.position, bullet.transform.rotation);
-        bulletSpawn.GetComponent<Rigidbody2D>().velocity = new Vector3(0, bulletSpeed, 0);
-        Destroy(bulletSpawn, 2);
+        GameObject bulletSpawn1 = Instantiate(bullet, balaLoc.position, bullet.transform.rotation);
+        GameObject bulletSpawn2 = Instantiate(bullet, balaLoc2.position, bullet.transform.rotation);
+
+        bulletSpawn1.GetComponent<Rigidbody2D>().velocity = new Vector3(0, bulletSpeed, 0);
+        bulletSpawn2.GetComponent<Rigidbody2D>().velocity = new Vector3(0, bulletSpeed, 0);
+
+        Destroy(bulletSpawn2, 2);
+        Destroy(bulletSpawn1, 2);
     }
 
 
